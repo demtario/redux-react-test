@@ -1,0 +1,8 @@
+@import '../../scss/variables';
+
+.collapse {
+  &__head {
+    padding: 12px;
+    background-color: darken($backgroundColor, 2);
+  }
+}
