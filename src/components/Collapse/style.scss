@@ -1,8 +1,32 @@
 @import '../../scss/variables';
 
 .collapse {
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 8px;
+
   &__head {
+    position: relative;
     padding: 12px;
     background-color: darken($backgroundColor, 2);
+    cursor: pointer;
+  }
+
+  &__button {
+    all: unset;
+    position: absolute;
+    right: 12px;
+    color: #fff;
+    font-size: 0.8em;
+    user-select: none;
+  }
+
+  &__body {
+    background-color: #333;
+    display: none;
+  }
+
+  &--open &__body {
+    display: block;
   }
 }

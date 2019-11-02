@@ -1,0 +1,23 @@
+@import './variables';
+
+@mixin loader($size: 24px, $width: 1px) {
+  &::before {
+    content: '';
+    position: absolute;
+    width: $size; height: $size;
+    top: calc(50% - #{$size / 2} - 8px); left: calc(50% - #{$size / 2});
+    border: solid $width $primaryColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 1s ease-in-out infinite;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}

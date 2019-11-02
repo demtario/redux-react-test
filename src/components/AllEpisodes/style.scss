@@ -1,0 +1,29 @@
+@import '../../scss/mixins';
+
+.episodes-list {
+
+  &__episodes:empty {
+    @include loader(48px, 2px);
+    min-height: 200px;
+    position: relative;
+  }
+
+  &__title {
+    font-weight: 300;
+
+    .link {
+      margin-left: 12px;
+    }
+  }
+
+  .link {
+    font-size: 0.8rem;
+    margin-left: 4px;
+  }
+
+  &__pagination {
+    text-align: center;
+    color: #444;
+    margin-top: 12px;
+  }
+}
