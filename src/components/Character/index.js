@@ -1,7 +1,16 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 
 import './style.scss'
+
+const propTypes = {
+  /** ID of the character to show */
+  id: PropTypes.oneOfType([PropTypes.number, PropTypes.string])
+}
+const defaultProps = {
+  id: 0
+}
 
 const Character = ({id, characters}) => {
   const {name, image} = characters.byId[id] || {}
@@ -13,5 +22,8 @@ const Character = ({id, characters}) => {
     </div>
   )
 }
+
+Character.propTypes = propTypes
+Character.defaultProps = defaultProps
 
 export default connect(({characters}) => ({characters}))(Character)

@@ -1,38 +1,66 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useCallback } from 'react'
 import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
 
 import API from '../../services/api'
+
 import Collapse from '../Collapse'
-import Character from '../Character'
+import CharactersList from './charactersList'
+
+import {getIdFromLink} from '../../utils'
 
 import {charactersFetched} from '../../redux/characters/actions'
 
 import './style.scss'
-
-const getIdFromLink = (link) => {
-  const splitted = link.split('/')
-  return splitted[splitted.length-1]
+const propTypes = {
+  /** Object of the current episode */
+  episode: PropTypes.shape({
+    id: PropTypes.number,
+    name: PropTypes.string,
+    air_date: PropTypes.string,
+    characters: PropTypes.arrayOf(PropTypes.string),
+  }),
+  /** state to controll collapse from top */
+  open: PropTypes.bool,
+  /** function to raport of open */
+  onOpenChange: PropTypes.func,
+}
+const defaultProps = {
+  episode: {
+    id: null,
+    name: '',
+    air_date: '',
+    characters: []
+  },
+  open: false,
+  onOpenChange: () => {}
 }
 
-const Episode = ({episode, open, onOpenChange, dispatch}) => {
+const Episode = ({episode, open, onOpenChange, dispatch, characters}) => {
 
   const { id, name, air_date } = episode
 
-  const characters = useMemo(() => (
+  const episodeCharacters = useMemo(() => (
     episode.characters.map((url) => getIdFromLink(url))
   ), [episode.characters])
 
-  const onOpen = (isOpen) => {
-    if(!isOpen) { return }
+  const onOpen = useCallback((isOpen) => {
+    onOpenChange(isOpen)
 
+    if(!isOpen) { return }
     const fetchData = async () => {
-      const response = await API.get(`/character/${characters.join(',')}`)
+      // Prevent do fetch characters that are already in redux
+      const fetchedChars = Object.keys(characters.byId)
+      const charactersToFetch = episodeCharacters.filter((id) => fetchedChars.indexOf(id) === -1)
+
+      if(charactersToFetch.length === 0) { return } // skip downloading when all fetched
+
+      const response = await API.get(`/character/${charactersToFetch.join(',')}`)
       const data = await response.json()
       dispatch(charactersFetched(data))
     }
     fetchData()
-    onOpenChange(isOpen)
-  }
+  }, [characters, episodeCharacters, onOpenChange])
 
   return (
     <Collapse
@@ -49,15 +77,13 @@ const Episode = ({episode, open, onOpenChange, dispatch}) => {
         <li><strong>Characters</strong></li>
       </ul>
       <div className="episode__characters">
-        { characters &&
-          characters
-            .map((id) => (
-              <Character key={id} id={id} />
-            ))
-        }
+        <CharactersList list={episodeCharacters} />
       </div>
     </Collapse>
   )
 }
 
-export default connect(() => ({}))(Episode)
+Episode.propTypes = propTypes
+Episode.defaultProps = defaultProps
+
+export default connect(({characters}) => ({characters}))(Episode)

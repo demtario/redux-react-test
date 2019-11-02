@@ -1,6 +1,24 @@
 import React, { useCallback, useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 
 import "./style.scss"
+
+const propTypes = {
+  /** boolean to control state of collapse from outside */
+  open: PropTypes.bool,
+  /** function to raport up when state is changed */
+  onChange: PropTypes.func,
+  /** text to show in collapse head */
+  title: PropTypes.string,
+  /** class for collapse body */
+  className: PropTypes.string,
+}
+const defaultProps = {
+  open: false,
+  onChange: () => {},
+  title: '',
+  className: ''
+}
 
 const Collapse = ({children, open, onChange, title, className}) => {
 
@@ -19,7 +37,7 @@ const Collapse = ({children, open, onChange, title, className}) => {
     <div className={`collapse ${isOpen && 'collapse--open'}`}>
       <div className="collapse__head" onClick={toggle}>
         { title }
-        <button className="collapse__button">{isOpen ? 'A' : 'V'}</button>
+        <button className="collapse__button">{isOpen ? '-' : '+'}</button>
       </div>
       <div className={`collapse__body ${className}`}>
         { children }
@@ -27,5 +45,8 @@ const Collapse = ({children, open, onChange, title, className}) => {
     </div>
   )
 }
+
+Collapse.propTypes = propTypes
+Collapse.defaultProps = defaultProps
 
 export default Collapse

@@ -11,7 +11,10 @@ import "./App.scss";
 const App = () => {
   return (
     <div>
-      <Header />
+      <Header
+        title="Rick and Morty app"
+        subtitle="Created by Artur Mędrygał"
+      />
       <main className="container">
         <AllEpisodes />
       </main>
