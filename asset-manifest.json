@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/react-test/static/css/main.5bff88e1.chunk.css",
-    "main.js": "/react-test/static/js/main.decb4eb9.chunk.js",
-    "main.js.map": "/react-test/static/js/main.decb4eb9.chunk.js.map",
-    "runtime-main.js": "/react-test/static/js/runtime-main.d88dc0ef.js",
-    "runtime-main.js.map": "/react-test/static/js/runtime-main.d88dc0ef.js.map",
-    "static/js/2.574557d8.chunk.js": "/react-test/static/js/2.574557d8.chunk.js",
-    "static/js/2.574557d8.chunk.js.map": "/react-test/static/js/2.574557d8.chunk.js.map",
-    "index.html": "/react-test/index.html",
-    "precache-manifest.36a66f9c2eb00b1ef587495ee968c41b.js": "/react-test/precache-manifest.36a66f9c2eb00b1ef587495ee968c41b.js",
-    "service-worker.js": "/react-test/service-worker.js",
-    "static/css/main.5bff88e1.chunk.css.map": "/react-test/static/css/main.5bff88e1.chunk.css.map"
+    "main.css": "/redux-react-test/static/css/main.5bff88e1.chunk.css",
+    "main.js": "/redux-react-test/static/js/main.decb4eb9.chunk.js",
+    "main.js.map": "/redux-react-test/static/js/main.decb4eb9.chunk.js.map",
+    "runtime-main.js": "/redux-react-test/static/js/runtime-main.05613944.js",
+    "runtime-main.js.map": "/redux-react-test/static/js/runtime-main.05613944.js.map",
+    "static/js/2.574557d8.chunk.js": "/redux-react-test/static/js/2.574557d8.chunk.js",
+    "static/js/2.574557d8.chunk.js.map": "/redux-react-test/static/js/2.574557d8.chunk.js.map",
+    "index.html": "/redux-react-test/index.html",
+    "precache-manifest.9e2ddf426d8dcf1bc3e68e9448cb5d20.js": "/redux-react-test/precache-manifest.9e2ddf426d8dcf1bc3e68e9448cb5d20.js",
+    "service-worker.js": "/redux-react-test/service-worker.js",
+    "static/css/main.5bff88e1.chunk.css.map": "/redux-react-test/static/css/main.5bff88e1.chunk.css.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.d88dc0ef.js",
+    "static/js/runtime-main.05613944.js",
     "static/js/2.574557d8.chunk.js",
     "static/css/main.5bff88e1.chunk.css",
     "static/js/main.decb4eb9.chunk.js"
