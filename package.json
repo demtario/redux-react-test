@@ -1,10 +1,9 @@
 {
-  "name": "qunabu-react-test",
-  "version": "6.6.6",
+  "name": "rick-and-morty-app",
+  "description": "App as the project for @qunabucom/redux-react-test",
+  "version": "1.0.0",
   "private": true,
   "dependencies": {
-    "es6-promise": "^4.2.8",
-    "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.7.2",
     "react": "^16.11.0",
     "react-app-polyfill": "^1.0.4",
@@ -21,7 +20,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
-  "homepage": "https://demtario.github.io/redux-react-test/",
+  "homepage": "https://demtario.github.io/rick-and-morty-app/",
   "devDependencies": {
     "@testing-library/jest-dom": "^4.1.0",
     "@testing-library/react": "^9.1.4",
