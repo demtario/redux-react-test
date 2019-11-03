@@ -2,16 +2,15 @@ import React, { useMemo, useCallback } from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 
-import API from '../../services/api'
-
 import Collapse from '../Collapse'
 import CharactersList from './charactersList'
 
 import {getIdFromLink} from '../../utils'
 
-import {charactersFetched} from '../../redux/characters/actions'
+import {fetchCharacters} from '../../redux/characters/fetch'
 
 import './style.scss'
+
 const propTypes = {
   /** Object of the current episode */
   episode: PropTypes.shape({
@@ -36,7 +35,7 @@ const defaultProps = {
   onOpenChange: () => {}
 }
 
-const Episode = ({episode, open, onOpenChange, dispatch, characters}) => {
+const Episode = ({episode, open, onOpenChange, characters}) => {
 
   const { id, name, air_date } = episode
 
@@ -48,16 +47,12 @@ const Episode = ({episode, open, onOpenChange, dispatch, characters}) => {
     onOpenChange(isOpen)
 
     if(!isOpen) { return }
-    const fetchData = async () => {
+    const fetchData = () => {
       // Prevent do fetch characters that are already in redux
       const fetchedChars = Object.keys(characters.byId)
       const charactersToFetch = episodeCharacters.filter((id) => fetchedChars.indexOf(id) === -1)
 
-      if(charactersToFetch.length === 0) { return } // skip downloading when all fetched
-
-      const response = await API.get(`/character/${charactersToFetch.join(',')}`)
-      const data = await response.json()
-      dispatch(charactersFetched(data))
+      fetchCharacters(charactersToFetch)
     }
     fetchData()
   }, [characters, episodeCharacters, onOpenChange])

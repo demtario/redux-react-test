@@ -16,7 +16,7 @@ const Character = ({id, characters}) => {
   const {name, image} = characters.byId[id] || {}
 
   return (
-    <div className="character">
+    <div className={`character ${characters.error && 'character--error'}`}>
       <img src={image} alt={name} className="character__image"/>
       <div className="character__name">{ name || `[ID: ${id}]` }</div>
     </div>

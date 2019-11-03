@@ -1,4 +1,5 @@
 const initialState = {
+  error: false,
   byId: {}
 }
 
@@ -9,7 +10,12 @@ export const characters = (state=initialState, action) => {
       action.payload.forEach((character) => {
         allCharacters[character.id] = character
       })
-      return {byId: allCharacters}
+      return {byId: allCharacters, error: false}
+
+    case 'FETCH_CHARACTERS_FAILURE':
+      state.error = action.error
+      return {...state}
+
     default:
       return state
   }

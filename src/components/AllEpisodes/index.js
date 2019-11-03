@@ -1,17 +1,17 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react'
 import {connect} from 'react-redux'
 
-import API from '../../services/api'
 import Episode from '../Episode/index'
+import Error from './error'
 
 import {getIdFromLink} from '../../utils'
 
-import {episodesFetched} from '../../redux/episodes/actions'
-import {charactersFetched} from '../../redux/characters/actions'
+import {fetchCharacters} from '../../redux/characters/fetch'
+import {fetchEpisodes} from '../../redux/episodes/fetch'
 
 import './style.scss'
 
-const AllEpisodes = ({episodes, characters, dispatch}) => {
+const AllEpisodes = ({episodes, characters}) => {
   const [isAllOpen, setIsAllOpen] = useState(false)
   const [page, setPage] = useState(1)
 
@@ -28,18 +28,12 @@ const AllEpisodes = ({episodes, characters, dispatch}) => {
   useEffect(() => {
     // Don't fetchs episodes that are already downloaded
     if(Object.keys(episodes.byId).length > (page-1) * episodes.perPage) { return }
-
-    const fetchData = async () => {
-      const response = await API.get('/episode', {page})
-      const data = await response.json()
-      dispatch(episodesFetched(data))
-    }
-    fetchData()
+    fetchEpisodes(page)
   }, [page])
 
 
 
-  const handleShowAllClick = useCallback(async () => {
+  const handleShowAllClick = useCallback(() => {
     const newIsOpen = !isAllOpen
     setIsAllOpen(newIsOpen)
 
@@ -53,11 +47,7 @@ const AllEpisodes = ({episodes, characters, dispatch}) => {
         .map((url) => getIdFromLink(url)) // replace urls by id
         .filter((id) => fetchedChars.indexOf(id) === -1) // get only that id's that are not fetched yet
 
-      if(charactersToFetch.length === 0) { return } // skip downloading when all fetched
-
-      const response = await API.get(`/character/${charactersToFetch.join(',')}`)
-      const data = await response.json()
-      dispatch(charactersFetched(data))
+      fetchCharacters(charactersToFetch)
     }
   }, [isAllOpen, characters, paginatedEpisodes])
 
@@ -76,6 +66,11 @@ const AllEpisodes = ({episodes, characters, dispatch}) => {
       </h2>
 
       <div className="episodes-list__episodes">
+
+        { episodes.error &&
+          <Error message={episodes.error} />
+        }
+
         {
           paginatedEpisodes.map((episode) => (
             <Episode
@@ -91,14 +86,14 @@ const AllEpisodes = ({episodes, characters, dispatch}) => {
       <div className="episodes-list__pagination">
         <span
           className={`link ${page === 1 && 'link--disabled'}`}
-          onClick={() => setPage(page-1)}
+          onClick={() => {setPage(page-1); setIsAllOpen(false)}}
         >
           prev page
         </span>
         {' |'}
         <span
           className={`link ${page === episodes.pages && 'link--disabled'}`}
-          onClick={() => setPage(page+1)}
+          onClick={() => {setPage(page+1); setIsAllOpen(false)}}
         >
           next page
         </span>

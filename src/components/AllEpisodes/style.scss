@@ -1,11 +1,14 @@
 @import '../../scss/mixins';
 
 .episodes-list {
-
-  &__episodes:empty {
-    @include loader(48px, 2px);
+  
+  &__episodes {
     min-height: 200px;
-    position: relative;
+
+    &:empty {
+      @include loader(48px, 2px);
+      position: relative;
+    }
   }
 
   &__title {
@@ -19,7 +22,22 @@
 
   &__pagination {
     text-align: center;
-    color: #444;
-    margin-top: 12px;
+    color: #333;
+    margin-top: 48px;
+  }
+}
+
+.error {
+  text-align: center;
+
+  &__title {
+    font-size: 2em;
+    color: firebrick;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  &__message {
+    color: #666;
   }
 }
