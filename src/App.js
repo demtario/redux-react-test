@@ -15,9 +15,9 @@ const App = () => {
         title="Rick and Morty app"
         subtitle="Created by Artur Mędrygał"
       />
-      <main className="container">
+      <div className="container">
         <AllEpisodes />
-      </main>
+      </div>
     </div>
   );
 }

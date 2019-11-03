@@ -14,6 +14,8 @@
 
   &__button {
     all: unset;
+    background-color: transparent;
+    border: 0;
     position: absolute;
     right: 12px;
     color: $primaryColor;

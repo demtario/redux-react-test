@@ -28,10 +28,10 @@ const Collapse = ({children, open, onChange, title, className}) => {
     setIsOpen(open)
   }, [open])
 
-  const toggle = useCallback(() => {
+  const toggle = () => {
     setIsOpen(!isOpen)
     onChange(!isOpen)
-  }, [isOpen, onChange])
+  }
 
   return (
     <div className={`collapse ${isOpen && 'collapse--open'}`}>
