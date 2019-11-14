@@ -88,3 +88,6 @@ In this test your task is to display a list of Rick and Morty episodes with each
 * 
 > * next page
 ```
+
+### Deploy
+[https://demtario.github.io/redux-react-test/](https://demtario.github.io/redux-react-test/)
