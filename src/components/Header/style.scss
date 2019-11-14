@@ -1,0 +1,31 @@
+@import '../../scss/variables';
+
+.header {
+  text-align: center;
+  text-transform: uppercase;
+  padding: 80px;
+  background-color: #fff;
+
+  &__body {
+    margin: 0 auto;
+    width: 655px;
+  }
+
+  &__title {
+    color: $backgroundColor;
+    margin-top: 0;
+    margin-bottom: -16px;
+    font-weight: 700;
+    font-size: 4em;
+  }
+
+  &__credits {
+    display: block;
+    color: $primaryColor;
+    background-color: $backgroundColor;
+    padding: 5px;
+    font-size: 1.5em;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+}

@@ -1,0 +1,43 @@
+@import '../../scss/mixins';
+
+.episodes-list {
+  
+  &__episodes {
+    min-height: 200px;
+
+    &:empty {
+      @include loader(48px, 2px);
+      position: relative;
+    }
+  }
+
+  &__title {
+    font-weight: 300;
+  }
+
+  .link {
+    font-size: 0.8rem;
+    margin-left: 4px;
+  }
+
+  &__pagination {
+    text-align: center;
+    color: #333;
+    margin-top: 48px;
+  }
+}
+
+.error {
+  text-align: center;
+
+  &__title {
+    font-size: 2em;
+    color: firebrick;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  &__message {
+    color: #666;
+  }
+}

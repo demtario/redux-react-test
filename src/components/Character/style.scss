@@ -1,0 +1,61 @@
+@import '../../scss/variables';
+@import '../../scss/mixins';
+
+.character {
+  @include loader;
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #444;
+
+  // IE11 Rules
+  display: inline-block;
+  width: 120px;
+  padding-top: 120px;
+  margin: 4px;
+
+  @supports( display: grid ) {
+    width: 100%;
+    padding-top: 100%;
+    display: block;
+    margin: 0;
+  }
+
+  &--error::before {
+    display: none;
+  }
+
+  &--error::after {
+    content: 'An error occured!';
+    color: firebrick;
+    font-weight: 500;
+    position: absolute;
+    top: 50%; left: 50%;
+    text-align: center;
+    font-size: 0.8em;
+    transform: translate(-50%, -70%);
+  }
+
+
+  &__image {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    display: block;
+    transform: scale(1.02);
+  }
+
+  &__name {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 6px 4px;
+    text-align: center;
+    background-color: rgba($backgroundColor, 0.8);
+    color: $primaryColor;
+    font-size: 0.6em;
+    text-transform: uppercase;
+  }
+}

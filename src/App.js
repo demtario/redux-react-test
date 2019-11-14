@@ -1,16 +1,24 @@
 import React from "react";
-import "./App.css";
+
+import Header from './components/Header'
+import AllEpisodes from './components/AllEpisodes'
+
+import "./App.scss";
 
 /**
- * The App  
+ * The App
  */
-
-function App(props) {
-
+const App = () => {
   return (
-    <main>
-      Hello Qunabu Escola team
-    </main>
+    <div>
+      <Header
+        title="Rick and Morty app"
+        subtitle="Created by Artur Mędrygał"
+      />
+      <div className="container">
+        <AllEpisodes />
+      </div>
+    </div>
   );
 }
 

@@ -1,0 +1,37 @@
+@import './scss/variables';
+
+body {
+  margin: 0;
+  font-family: $font;
+  background-color: $backgroundColor;
+  color: #fff;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-bottom: 48px;
+}
+
+.link {
+  color: $primaryColor;
+  transition: color 0.3s;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  &:hover {
+    color: lighten($primaryColor, 5);
+  }
+
+  &--disabled {
+    color: #666;
+    pointer-events: none;
+  }
+}
